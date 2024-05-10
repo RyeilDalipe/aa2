@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Interactive Sign-Up Sheet</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif Impact, 'Arial Narrow Bold', sans-serif;
+        }
+        
+        body {
+            background-image: url("../images/yuh.jfif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-position: center;
+            padding: 10px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 80%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form{
+            background-color: rgba(244, 231, 212, 0.75);
+            width: 70%;
+            margin: 20px 0;
+            padding: 20px;
+            display: flex;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, p {
+            margin-bottom: 16px;
+        }
+
+        h2{
+            background-color: rgba(244, 231, 212, 0.855);
+            width: 70%;
+            margin: 20px 0;
+            padding: 20px;
+            display: flex;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        a {
+            color: #0d2739;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dungeon Website Sign-Up</h2>
+    <form id="signUpForm">
+        <fieldset>
+            <legend>Sign-Up Details</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" onblur="validateInput(this)"><br>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" onblur="validateInput(this)"><br>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="prefer not to say">Prefer not to say</option>
+            </select><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" onblur="validateInput(this)"><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" onblur="validateInput(this)"><br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" onblur="validateInput(this)"><br>
+
+            <label for="interests">Interests:</label>
+            <textarea id="interests" name="interests" rows="3" cols="40" onblur="validateInput(this)"></textarea><br>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </fieldset>
+        <p><br>&nbsp;&nbsp; Welcome, adventurer!<br><br> &nbsp;&nbsp; Before you explore the dungeon, you must first fill up this form. By doing so, you allow us<br> &nbsp;&nbsp; to keep  
+            track of the amount of people dwelling inside, as well as their basic information so<br>&nbsp;&nbsp; we can identify them in the case that they die and 
+            cannot be revived by an existing mage in<br>&nbsp;&nbsp; the party and are requested to be retrieved and/or revived. <br><br>&nbsp;&nbsp;Thank you for your cooperation.<br><br><br>&nbsp;&nbsp;P.S. We are
+            not liable for any deaths, injuries, or illnesses that a party or a party member<br>&nbsp;&nbsp;willingly or unwillingly, intentionally or unintentionally
+            experiences, sustains, or <br>&nbsp;&nbsp;contracts inside the dungeon. Enjoy!<br><br><br><br><br><br>&nbsp;&nbsp;*artwork belongs to the talented @QuoIsEternal on X</p>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        function validateInput(input) {
+            if (!input.value) {
+                input.style.border = '2px solid red';
+            } else {
+                input.style.border = '2px solid green';
+            }
+        }
+        document.getElementById('signUpForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <p><strong>Name:</strong> ${formData.get('name')}</p>
+                <p><strong>Username:</strong> ${formData.get('username')}</p>
+                <p><strong>Gender:</strong> ${formData.get('gender')}</p>
+                <p><strong>Password:</strong> ${formData.get('password')}</p>
+                <p><strong>Email:</strong> ${formData.get('email')}</p>
+                <p><strong>Address:</strong> ${formData.get('address')}</p>
+                <p><strong>Interests:</strong> ${formData.get('interests')}</p>
+            `;
+        });
+    </script>
+</body> 
+</html>
